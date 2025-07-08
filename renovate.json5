@@ -24,10 +24,9 @@
     },
   ],
   packageRules: [
-    // {
-    //   matchDatasources: ["docker"],
-    //   matchDepNames: ["ghcr.io/berriai/litellm-non_root"],
-    //   versioning: "loose",
-    // },
+    {
+      matchDatasources: ["docker"],
+      versioning: "loose",
+    },
   ],
 }
