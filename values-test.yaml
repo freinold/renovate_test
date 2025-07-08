@@ -1,2 +1,2 @@
-# renovate: datasource=docker depName=ghcr.io/berriai/litellm-non_root
+# renovate: datasource=docker depName=ghcr.io/berriai/litellm-non_root versioning=loose
 tag: main-v1.73.6-stable
