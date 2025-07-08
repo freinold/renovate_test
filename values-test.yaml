@@ -1,2 +1,0 @@
-# renovate: datasource=docker depName=ghcr.io/berriai/litellm-non_root versioning=loose extractVersion=main-v(?<version>\d+\.\d+\.\d+)-stable
-tag: main-v1.73.6-stable

@@ -1,0 +1,7 @@
+image:
+  # Use "ghcr.io/berriai/litellm-database" for optimized image with database
+  repository: ghcr.io/berriai/litellm-non_root
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: main-v1.73.6-stable
+  registry: ghcr.io
