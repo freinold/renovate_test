@@ -27,7 +27,10 @@
     {
       matchDatasources: ["docker"],
       matchDepNames: ["ghcr.io/berriai/litellm-non_root"],
-      allowedVersions: ".*-stable$",
+      versioning: "loose",
+      // allowedVersions: ".*-stable$",
+      // extractVersionTemplate: "main-v(?<version>\\d+\\.\\d+\\.\\d+)-stable",
+      // versioningTemplate: "loose",
     },
   ],
 }
