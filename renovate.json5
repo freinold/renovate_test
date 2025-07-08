@@ -24,6 +24,7 @@
         "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?) \\s\\s*tag: (?<currentValue>.*)",
       ],
       extractVersionTemplate: "{{#if extractVersion}}{{{extractVersion}}}{{else}}^v?(?<version>.+)${{/if}}",
+      versioningTemplate: "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}",
     },
     {
       customType: "regex",
