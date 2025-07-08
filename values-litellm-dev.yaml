@@ -3,4 +3,4 @@ image:
   repository: ghcr.io/berriai/litellm-non_root
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: main-v1.73.0-stable
+  tag: main-v1.73.0-stable@sha256:05915095817190f70bd4e1e1a5c8dd3aec9f4b35cf60cba37dbc0699fcceea61
