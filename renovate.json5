@@ -37,11 +37,11 @@
       versioningTemplate: "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}",
     },
   ],
-  packageRules: [
-    {
-      matchDatasources: ["docker"],
-      matchDepNames: ["ghcr.io/berriai/litellm-non_root"],
-      allowedVersions: ".*-stable$",
-    },
-  ],
+  // packageRules: [
+  //   {
+  //     matchDatasources: ["docker"],
+  //     matchDepNames: ["ghcr.io/berriai/litellm-non_root"],
+  //     allowedVersions: ".*-stable$",
+  //   },
+  // ],
 }
