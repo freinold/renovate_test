@@ -1,0 +1,2 @@
+# renovate: datasource=github-releases depName=langfuse/langfuse-k8s versioning=loose extractVersion=langfuse-(?<version>.*)
+CHART_VERSION_DEV: 1.2.18

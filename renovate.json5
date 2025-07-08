@@ -1,0 +1,41 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  labels: ["renovate"],
+  prConcurrentLimit: 5,
+  extends: [
+    "config:best-practices",
+    ":separateMultipleMajorReleases",
+    ":timezone(Europe/Berlin)",
+    "security:openssf-scorecard",
+  ],
+  customManagers: [
+    {
+      customType: "regex",
+      description: "Update image variables in YAML files",
+      managerFilePatterns: ["/\\.y[a]?ml$/", "/\\.y[a]?ml\\.tpl$/"],
+      matchStrings: [
+        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>[^\\s]+?)(?: (lookupName|packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?\\s.+?_version: (?<currentValue>.+?)\\s",
+        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>[^\\s]+?)(?: (lookupName|packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?\\s.+?-version: (?<currentValue>.+?)\\s",
+        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>[^\\s]+?)(?: (lookupName|packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?\\simage: (?<currentValue>.+?)\\s",
+        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>[^\\s]+?)(?: (lookupName|packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?\\stag: (?<currentValue>.+?)\\s",
+        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?) versioning=(?<versioning>.+?)\\s\\s*image: (?<currentValue>.*)",
+        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?) versioning=(?<versioning>.+?)\\s\\s*tag: (?<currentValue>.*)",
+        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?) \\s\\s*image: (?<currentValue>.*)",
+        '# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\s+-\\s+"(?<currentValue>.*)"',
+      ],
+      extractVersionTemplate: "{{#if extractVersion}}{{{extractVersion}}}{{else}}^v?(?<version>.+)${{/if}}",
+    },
+    {
+      customType: "regex",
+      description: "Update version variables in YAML files",
+      managerFilePatterns: ["/\\.y[a]?ml$/", "/\\.y[a]?ml\\.tpl$/"],
+      matchStrings: [
+        "# renovate: datasource=(?<datasource>.+?) depName=(?<depName>.+?) versioning=(?<versioning>.+?) extractVersion=(?<extractVersion>.+?)\\s+(.*?):\\s?(?<currentValue>.+)",
+        "# renovate: datasource=(?<datasource>.+?) depName=(?<depName>.+?)\\s+(.*?):\\s?(?<currentValue>.+)",
+        "# renovate: datasource=(?<datasource>.+?) depName=(?<depName>.+)\\s+(.*?):\\s(\"|')(?<currentValue>.+)(\"|')",
+      ],
+      extractVersionTemplate: "{{#if extractVersion}}{{{extractVersion}}}{{else}}^v?(?<version>.+)${{/if}}",
+      versioningTemplate: "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}",
+    },
+  ],
+}
